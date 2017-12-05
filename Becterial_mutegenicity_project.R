@@ -1,3 +1,4 @@
+# Loading packages 
 install.packages("vcd")
 install.packages("SDMTools")
 install.packages("ROCR")
@@ -29,7 +30,7 @@ library(ROCR)
 library(e1071)
 library(randomForest)
 
-
+# Loading data
 gene <- read.delim("GENETOX_Bacterial mutagenicity_NTP.txt")
 plot(gene$STUDY_CONCLUSION, col=c("blue","green","yellow"))
 
@@ -717,7 +718,4 @@ diffs <- diff(results)
 # summarize p-values for pair-wise comparisons
 summary(diffs)
 
-## calculating the values for ROC curve
-#pred <- prediction(target_pred, target_class)
-#perf <- performance(pred,"tpr","fpr"
 
