@@ -472,9 +472,6 @@ clu_means<-function(x, id, disp=TRUE, center=TRUE, scale=TRUE){
   par_bm$clusters=gnam
 
   par_bm$csize=c(csize,1/length(csize))
-
-  
-
   gg_color_hue <- function(n) {
 
     hues = seq(15, 375, length = n + 1)
@@ -482,14 +479,9 @@ clu_means<-function(x, id, disp=TRUE, center=TRUE, scale=TRUE){
     hcl(h = hues, l = 65, c = 100)[1:n]
 
   }
-
-  
-
   mypal=gg_color_hue(length(csize))
 
   mypal=c("black",mypal)
-
-  
 
   # if (scale == T) {
 
