@@ -1,8 +1,7 @@
 ##########################################
-# Check AIC, BIC, Cp
-## PRELIMINARIES
+## Regression project 
 
-cost.data <- read.csv("/users/ryanquigley/desktop/261A_Final-Project/proj4.csv", header = TRUE)
+cost.data <- read.csv("/users/sucharu/desktop/261A_Final-Project/proj4.csv", header = TRUE)
 
 par(mfrow = c(2,2))
 plot(ced.r.train$units, ced.r.train$avecost)
@@ -23,8 +22,6 @@ cost.data$complexity.ave <- (cost.data$stamp + cost.data$chisel)/2
 cost.data$super.complexity <- (cost.data$stamp + cost.data$chisel)/(cost.data$goal.sd)
 
 cost.data$rework.num <- (cost.data$units*cost.data$rework)
-
-
 
 cost.data$goal.sd.cat <- as.factor(cost.data$goal.sd)
 
@@ -61,7 +58,7 @@ cam.holdout.variable <- rbinom(n = dim(cam)[1], size = 1, prob = 0.35)
 cam.train <- cam[cam.holdout.variable == 0,]
 cam.holdout <- cam[cam.holdout.variable == 1,]
 
-## Removing observations: 19, 311
+## Removing observations: 19, 311     # Outliers
 
 ced.red <- ced[-c(19,311),]
 cam.red <- cam[-c(19,311),]
@@ -105,7 +102,7 @@ for (i in 1:9) {
 }
 ced.candidates
 
-
+# Plot for estimation models
 
 hist(my.ced.cand.3$resid)
 qqnorm(my.ced.cand.3$residuals)
@@ -129,11 +126,8 @@ plot(ced.r.train$detail, my.ced.cand.3$resid)
 plot(ced.r.train$rush, my.ced.cand.3$resid)
 plot(ced.r.train$units, my.ced.cand.3$resid)
 
-
+## Estimation final models
 my.ced.final.red1 <- lm(avecost ~ units.log + weight + complexity, data = ced.red)
-
-
-
 my.ced.final.red2 <- lm(avecost ~ units.inv + weight + complexity, data = ced.red)
 my.ced.final.red3 <- lm(avecost ~ units + weight + complexity, data = ced.red)
 
@@ -150,12 +144,7 @@ my.cam.cand.1 <- lm(avecost ~ units.inv + material.cost + labor + dev + complexi
 my.cam.cand.3 <- lm(avecost ~ units + material.cost + labor + dev + complexity, data = cam.r.train)
 
 
-
-
-
-
 ## Tests
-
 
 sst.cam <- sum((cam.r.train$avecost - mean(cam.r.train$avecost))^2)
 cam.candidates <- data.frame(candidates = 0)
@@ -177,11 +166,11 @@ for (i in 1:3) {
 	assign(paste0("my.cam.vif.",i),vif(x))
 }
 cam.candidates
-
+# Final analysis models
 my.cam.final1 <- lm(avecost ~ units.log + material.cost + labor + mach.hrs + dev + complexity, data = cam.red)
 my.cam.final2 <- lm(avecost ~ units.log + material.cost + labor + dev + complexity, data = cam.red)
 
-
+## Plots of variables for analysis model
 hist(my.cam.cand.1$resid)
 qqnorm(my.cam.cand.1$residuals)
 qqnorm(rnorm(dim(cam.train)[1]))
