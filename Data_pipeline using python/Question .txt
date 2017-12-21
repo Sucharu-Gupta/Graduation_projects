@@ -1,0 +1,33 @@
+1) Pipeline Case Study
+
+               Given three database tables containing information about deals and investors, generate two outputs:
+
+               1) a list of deals with the investors (by name) who participated in that deal,
+
+               and 2) an adjacency matrix where a connection between two investors (by virtue of having participated in the same deal) is denoted as one connection (the underlying graph is undirected).
+
+               Use of a MySQL database (and MySQL code) is permitted. Error-checking is highly recommended.
+
+              
+
+               Input: investor_general.dat, deal_investor_relation.dat, deals.dat
+
+               Deliverables:
+
+               1) the deal list [case_study_example.xlsx has an example on the first tab]
+
+               2) an adjacency matrix of all investors [case_study_example.xlsx has an example on the second tab]
+
+               3) the code that you used to construct the data pipeline (preferably Python, but also accepting delivery in Java)
+
+              
+
+2) "Mender" Case Study
+
+               Given a poorly-documented and poorly-styled, yet functional Python script, refactor the code to the stylistic standards that you wish others in your organization/team would achieve. There is no test input file, as the objective is to maintain business logic while cleaning up the code (rather than rebuilding from scratch). There is no right answer, but there are answers that are more right than others.
+
+              
+
+               Input: mender_case_study.py
+
+               Deliverable: your refactored version of the mender_case_study.py
